@@ -16,19 +16,19 @@ const useRecord = (init) => {
     setBefore(before => [...before, current]);
     setCurrent(after[0]);
     setAfter(after => after.slice(1));
-  }
+  };
 
   const record = val => {
     setBefore(before => [...before, current]);
     setCurrent(val);
-  }
+  };
 
   return {
     undo,
     record,
     redo,
     current,
-  }
+  };
 };
 
 function App() {
@@ -38,10 +38,13 @@ function App() {
     <>
       <button onClick={undo}>undo</button>
       <button onClick={redo}>redo</button>
+      
+      <label htmlFor="color">Color</label>
       <input type="color" value={current} onChange={({ target }) => record(target.value)} />
-      <div style={{ backgroundColor: current, width: '10rem', height: '10rem' }}></div>
+    
+      <div data-testid="display" style={{ backgroundColor: current, width: '10rem', height: '10rem' }}></div>
     </>
-  )
+  );
 }
 
 export default App;
